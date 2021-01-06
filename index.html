@@ -1,0 +1,211 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    header{
+        background-color: black;
+        height: 60px;
+        color: #fff;
+        padding: 10px 40px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .photo_store{
+        
+        background-color: #181818;
+        padding: 50px 60px;
+        display: flex;
+        
+    }
+    .grid{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        
+    }
+    .grid:not(:first-child){
+        margin-left: 20px;
+    }
+    
+    .img-wrap{
+        margin-bottom: 20px;
+    }
+    .img-wrap img{
+        width: 100%;
+    }
+
+    @media only screen and (max-width: 873px) {
+        .photo_store {
+            padding: 10px 20px;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+        }
+
+        .photo_store > .grid {
+            flex : 0 48%;
+        }
+        
+        .grid:not(:first-child){
+            margin-left: 0;
+        }
+
+        
+    }
+
+
+    @media only screen and (max-width: 600px) {
+        header{
+            font-size: 14px;
+        }
+        .photo_store {
+            padding: 10px 20px;
+            flex-wrap: wrap;
+        }
+
+        .photo_store > .grid {
+            flex : 0 100%;
+        }
+        .grid:not(:first-child){
+            margin-left: 0;
+        }
+    }
+
+    .topimg{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 80%;
+        height: 70vh;
+        /* display: none; */
+        transform: translate(-50%,-50%);
+    }
+    .cross{
+
+        z-index: 100;
+        position: absolute;
+        display :inline-block;
+        right: 0;
+        top: 0;
+        width: 40px;
+        height: 40px;
+    }
+
+    .cross img{
+        height: 40px;
+    }
+
+    #display-img{
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    .wraptop{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(0,0,0,0.8);
+        display: none;
+    }
+
+</style>
+<body>
+    <div class="wraptop">
+        <div class="topimg">
+            <span class="cross" style="
+                background-color: white;
+                border-radius: 50%;
+            ">
+                <img src="img/cross.png" alt="">
+            </span>
+           
+            <img id="display-img"  src="">    
+        </div>
+    </div>
+    
+    <header class="header">
+        <h1>Krishna's Photo Store</h1>
+    </header>
+
+    <main class="photo_store">
+        <div class="grid">
+            
+            <div class="img-wrap" id="first">
+                <img src="img2/img1.jpg" alt="">
+            </div>
+            <div class="img-wrap">
+                <img src="img2/img2.jpg" alt="">
+            </div>
+            <div class="img-wrap">
+                <img src="img2/img3.jpg" alt="">
+            </div>
+        </div>
+        <div class="grid">
+            <div class="img-wrap">
+                <img src="img2/img4.jpg" alt="">
+            </div>
+            <div class="img-wrap">
+                <img src="img2/img5.jpg" alt="">
+            </div>
+            <div class="img-wrap">
+                <img src="img2/img6.jpg" alt="">
+            </div>
+        </div>
+        
+        <div class="grid">
+            <div class="img-wrap">
+                <img src="img2/img7.jpg" alt="">
+            </div>
+            <div class="img-wrap">
+                <img src="img2/img8.jpg" alt="">
+            </div>
+            <div class="img-wrap">
+                <img src="img2/img9.jpg" alt="">
+            </div>
+        </div>
+        <div class="grid">
+            <div class="img-wrap">
+                <img src="img2/img10.jpg" alt="">
+            </div>
+            <div class="img-wrap">
+                <img src="img2/img11.jpg" alt="">
+            </div>
+            <div class="img-wrap">
+                <img src="img2/img12.jpg" alt="">
+            </div>
+        </div>
+    </main>
+</body>
+
+<script>
+    let x = document.querySelectorAll(".img-wrap");
+    for(let i =0 ;i < x.length ;i++){
+        x[i].addEventListener('click',(e)=>{
+
+            // document.querySelector('.topimg').removeChild();
+            let y = e.path[0];
+            y = y.attributes[0].value;
+            
+           
+            document.querySelector('#display-img').setAttribute('src',y);
+            document.querySelector(".wraptop").style.display = "block";
+        })
+    }
+
+    document.querySelector('.cross').addEventListener('click',()=>{
+        document.querySelector(".wraptop").style.display = "none";
+    })
+</script>
+</html>

@@ -1,0 +1,91 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    background-color: black;
+}
+
+.header{
+    height: 54px;
+    display: flex;
+    justify-content:space-between;
+    padding: 10px 15px;
+    background-color: #262626;
+    align-items: center;
+}
+
+.header__logo{
+    width: 160px;
+}
+
+.header__button{
+    color : #fff;
+    padding: 10px 20px;
+    background-color: #7AA93B;
+    border: none;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+.main{
+    font-size: 12px;
+    height: 95vh;
+    background-image:  url('./../img/main.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.hl{
+    padding: 60px 50px;
+    height: 45px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hl img{
+    width: 80px;
+}
+
+.main__menu{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color : white;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+}
+.main__menu--padd{
+    position: relative;
+    height: 3px;
+    width: 30px;
+    display: inline-block;
+    background-color: white;
+    margin-right: 15px;
+}
+.main__menu--padd::before{
+    top: -10px;
+    position: absolute;
+    content: "";
+    height: 3px;
+    width: 30px;
+    display: inline-block;
+    background-color: white;
+}
+.main__menu--padd::after{
+    content: "";
+    top: 10px;
+    position: absolute;
+    height: 3px;
+    width: 30px;
+    display: inline-block;
+    background-color: white;
+}
+.main__logo--para{
+
+    font-size: 16px;
+    letter-spacing: 1px;
+}
