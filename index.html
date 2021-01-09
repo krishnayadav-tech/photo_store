@@ -43,6 +43,9 @@
     }
     .img-wrap img{
         width: 100%;
+        overflow: hidden;
+        opacity: 1;
+        transition: opacity 1s;
     }
 
     @media only screen and (max-width: 873px) {
@@ -63,7 +66,6 @@
         
     }
 
-
     @media only screen and (max-width: 600px) {
         header{
             font-size: 14px;
@@ -78,6 +80,10 @@
         }
         .grid:not(:first-child){
             margin-left: 0;
+        }
+
+        .inright{
+            opacity: 0.1 !important;
         }
     }
 
@@ -106,6 +112,7 @@
     #display-img{
         max-width: 80vw;
         max-height: 80vh;
+        transition: transform 2s;
     }
 
     .wraptop{
@@ -118,6 +125,28 @@
         display: none;
     }
 
+    .footer{
+        height: 500px;
+        background-color: black ;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+    }
+
+    .btn{
+        width: 50%;
+        padding: 20px 50px;
+        border-radius: 150px;
+        border : none;
+        outline: none;
+        font-size: 20px;
+        align-self: center;
+        display: inline-block;
+        text-align: center;
+        box-shadow: 0 2px 2px white;;
+    }
 
 </style>
 <body>
@@ -142,66 +171,65 @@
         <div class="grid">
             
             <div class="img-wrap" id="first">
-                <img src="img2/img1.jpg" alt="">
+                <img class="inright" src="img2/img1 (NXPowerLite Copy).jpg" alt="">
             </div>
             <div class="img-wrap">
-                <img src="img2/img2.jpg" alt="">
+                <img class="inright" src="img2/img2 (NXPowerLite Copy).jpg" alt="">
             </div>
             <div class="img-wrap">
-                <img src="img2/img3.jpg" alt="">
+                <img class="inright" src="img2/img3 (NXPowerLite Copy).jpg" alt="">
             </div>
         </div>
         <div class="grid">
             <div class="img-wrap">
-                <img src="img2/img4.jpg" alt="">
+                <img class="inright" src="img2/img4 (NXPowerLite Copy).jpg" alt="">
             </div>
             <div class="img-wrap">
-                <img src="img2/img5.jpg" alt="">
+                <img class="inright" src="img2/img5 (NXPowerLite Copy).jpg" alt="">
             </div>
             <div class="img-wrap">
-                <img src="img2/img6.jpg" alt="">
+                <img class="inright" src="img2/img6 (NXPowerLite Copy).jpg" alt="">
             </div>
         </div>
         
         <div class="grid">
             <div class="img-wrap">
-                <img src="img2/img7.jpg" alt="">
+                <img class="inright" src="img2/img7 (NXPowerLite Copy).jpg" alt="">
             </div>
             <div class="img-wrap">
-                <img src="img2/img8.jpg" alt="">
+                <img class="inright" src="img2/img8 (NXPowerLite Copy).jpg" alt="">
             </div>
             <div class="img-wrap">
-                <img src="img2/img9.jpg" alt="">
+                <img class="inright" src="img2/img9 (NXPowerLite Copy).jpg" alt="">
             </div>
         </div>
         <div class="grid">
             <div class="img-wrap">
-                <img src="img2/img10.jpg" alt="">
+                <img class="inright" src="img2/img10 (NXPowerLite Copy).jpg" alt="">
             </div>
             <div class="img-wrap">
-                <img src="img2/img11.jpg" alt="">
+                <img class="inright" src="img2/img11 (NXPowerLite Copy).jpg" alt="">
             </div>
             <div class="img-wrap">
-                <img src="img2/img12.jpg" alt="">
+                <img class="inright" src="img2/img12 (NXPowerLite Copy).jpg" alt="">
             </div>
         </div>
     </main>
+
+    <div class="footer">
+       <button class="btn">&#8593;</button>
+    </div>
 </body>
 
 <script>
-    let x = document.querySelectorAll(".img-wrap");
-    for(let i =0 ;i < x.length ;i++){
-        x[i].addEventListener('click',(e)=>{
-
-            // document.querySelector('.topimg').removeChild();
-            let y = e.path[0];
-            y = y.attributes[0].value;
-            
-           
+    
+    document.querySelector(".photo_store").addEventListener('click',(e)=>{
+        if(e.target.tagName === 'IMG'){
+            let y = (e.target.getAttribute('src'));
             document.querySelector('#display-img').setAttribute('src',y);
             document.querySelector(".wraptop").style.display = "block";
-        })
-    }
+        }
+    })
 
     document.querySelector('.cross').addEventListener('click',()=>{
         document.querySelector(".wraptop").style.display = "none";
@@ -209,6 +237,30 @@
 
     document.querySelector('.wraptop').addEventListener('click',()=>{
         document.querySelector(".wraptop").style.display = "none";
+    })
+
+    let data = {
+        root : null,
+        threshold : [0.5, 0.9]
+    }
+    const Observer = new IntersectionObserver((e,o)=>{
+        console.log(e[0]);
+        if(e[0].isIntersecting){
+            e[0].target.classList.remove("inright");
+            o.unobserve(e[0].target);
+        }
+        
+    },data);
+
+    const x = document.querySelectorAll(".img-wrap img");
+    x.forEach(y=>{
+        Observer.observe(y);
+    })
+
+    document.querySelector(".btn").addEventListener('click',()=>{
+        document.querySelector(".header").scrollIntoView({
+            behavior:'smooth'
+        })
     })
 </script>
 </html>
